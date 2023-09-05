@@ -36,13 +36,20 @@ public class BaseClass  {
 		//System.setProperty("webdriver.chrome.driver",rconfig.getchromepath());
 
                 System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+/*
+ * ChromeOptions options = new ChromeOptions();
+options.addArguments("--headless");
+WebDriver driver = new ChromeDriver(options);
 
-
+ */
 		
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
+		//options.addArguments("--remote-allow-origins=*");
+		
+                options.addArguments("--headless");
 		options.addArguments();
-		driver = new ChromeDriver(options);
+		WebDriver driver = new ChromeDriver(options);
+		//driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		//driver.get(rconfig.getbaseurl());
 	//	driver.get("https://ybc-staging.encashoffers.com/#/");
