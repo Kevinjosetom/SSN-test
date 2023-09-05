@@ -33,7 +33,11 @@ public class BaseClass  {
 	@SuppressWarnings("deprecation")
 	public void beforeSuite() {
 		//WebDriverManager.chromedriver().create();
-		System.setProperty("webdriver.chrome.driver",rconfig.getchromepath());
+		//System.setProperty("webdriver.chrome.driver",rconfig.getchromepath());
+
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+
+
 		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
