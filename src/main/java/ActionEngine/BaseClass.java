@@ -25,15 +25,16 @@ public class BaseClass {
 
     @BeforeSuite
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver", chromepath);
-        
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+	//System.setProperty("webdriver.chrome.driver", chromepath);
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        
+
         htmlreporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\Reports\\YBC.html");
         extent = new ExtentReports();
         extent.attachReporter(htmlreporter);
