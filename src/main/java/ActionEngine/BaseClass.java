@@ -1,4 +1,68 @@
+package ActionEngine;
+import java.time.Duration;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+public class BaseClass {
+
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    public ExtentHtmlReporter htmlreoprter;
+    public ExtentReports extent;
+    public static ExtentTest test;
+    public readconfig rconfig = new readconfig();
+    public String chromepath = rconfig.getchromepath();
+    public String url = rconfig.getbaseurl();
+
+    @BeforeSuite
+    @SuppressWarnings("deprecation")
+    public void beforeSuite() {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // Run Chrome in headless mode (without a GUI)
+        driver = new ChromeDriver(options); // Initialize the WebDriver
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+        htmlreoprter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\Reports\\YBC.html");
+        extent = new ExtentReports();
+        extent.attachReporter(htmlreoprter);
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        extent.flush();
+        driver.quit();
+    }
+
+    public WebDriverWait explicitWait() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        return wait;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 package ActionEngine;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
@@ -43,7 +107,7 @@ WebDriver driver = new ChromeDriver(options);
 
  */
 		
-		ChromeOptions options = new ChromeOptions();
+/*		ChromeOptions options = new ChromeOptions();
 		//options.addArguments("--remote-allow-origins=*");
 		
                 options.addArguments("--headless");
@@ -74,6 +138,12 @@ WebDriver driver = new ChromeDriver(options);
 	
 	
 }
+
+
+
+
+
+
 
 
 //package ActionEngine;
