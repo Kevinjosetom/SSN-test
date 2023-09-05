@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="Edge(failed)" verbose="0">
+    <classes>
+      <class name="test.Execution.POC">
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="beforeClass"/>
+          <include name="afterSuite"/>
+          <include name="Verify_Signup_Details_ByDefault_On_EO_Signup_Page"/>
+        </methods>
+      </class> <!-- test.Execution.POC -->
+    </classes>
+  </test> <!-- Edge(failed) -->
+</suite> <!-- Failed suite [Suite] -->
