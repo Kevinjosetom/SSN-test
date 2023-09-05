@@ -1,51 +1,35 @@
-package ActionEngine;
-import java.time.Duration;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+// ...
 
 public class BaseClass {
-
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    public ExtentHtmlReporter htmlreoprter;
-    public ExtentReports extent;
-    public static ExtentTest test;
-    public readconfig rconfig = new readconfig();
-    public String chromepath = rconfig.getchromepath();
-    public String url = rconfig.getbaseurl();
+    // ...
 
     @BeforeSuite
     @SuppressWarnings("deprecation")
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        WebDriverManager.chromedriver().setup(); // Use WebDriverManager to set up ChromeDriver
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Run Chrome in headless mode (without a GUI)
-        driver = new ChromeDriver(options); // Initialize the WebDriver
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+        
+        // Wait for Chrome to fully initialize (you can adjust the sleep duration as needed)
+        try {
+            Thread.sleep(5000); // Sleep for 5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-
         htmlreoprter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\Reports\\YBC.html");
         extent = new ExtentReports();
         extent.attachReporter(htmlreoprter);
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        extent.flush();
-        driver.quit();
-    }
-
-    public WebDriverWait explicitWait() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        return wait;
-    }
+    // ...
 }
 
