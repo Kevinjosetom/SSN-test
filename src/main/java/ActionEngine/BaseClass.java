@@ -41,8 +41,9 @@ public class BaseClass {
             e.printStackTrace();
         }
 
-        htmlreporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\Reports\\YBC.html");
-        extent = new ExtentReports();
+        //htmlreporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\Reports\\YBC.html");
+        htmlreporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/Reports/YBC.html");
+	extent = new ExtentReports();
         extent.attachReporter(htmlreporter);
     }
 
