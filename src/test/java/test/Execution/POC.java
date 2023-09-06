@@ -17,7 +17,7 @@ import pageObjects.encash_offers_signup_page_objects;
 public class POC extends ObjectCreation {
 
 				
-	@Test//(priority = 1)
+	@Test(priority = 1)
 	public void createCategory_AssignCompetition_DeleteCategory() throws Exception {
 		
 		System.out.println("createCategory_AssignCompetition_DeleteCategory");
